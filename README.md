@@ -4,10 +4,10 @@
 
 ## Author Name
 
-* Grace Gicheru
+* Grace Gicheru, an Engineer in safaricom
 
 ## Description
-* The project is about me, hobbies and why am taking a course with Moringa School. 
+* This is a simpe web application that takes user's birthday and calculates the day they were born and        depending on the gender it outputs their Akan name.
 
 ## Getting Started
 
