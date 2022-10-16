@@ -15,9 +15,21 @@
 
 * Any OS either be (windows, Linux, MacOS),  Git to clone the project, and IDE to edit the project.
 
+### Technologies used
+
+* Html, css and JavaScript
+
+### BDD
+
+*
+
 ### Link to the project
 
-* https://gracegicheru.github.io/moringa-week1/
+* https://gracegicheru.github.io/moringa-week2/
+
+### Contact Information
+* github: https://github.com/gracegicheru
+* Mobile Number: +254713060941
 
 ### Copyright and license Information
 
