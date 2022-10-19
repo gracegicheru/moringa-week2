@@ -2,11 +2,18 @@
 function validMonth(month){
     // confirm month is not greater than 12 and less than 1
     valid = true;
-    intMonth = parseInt(month);
+    enteredMonth = parseInt(month);
 
-    if(intMonth <=0 || intMonth > 12){
+    if(enteredMonth <=0 || enteredMonth > 12){
         return valid = false;
     }
+
+}
+function validDay(month){
+    // Determine the valid days for the month and retun the value
+    var validMonthDays = ["31","28","31","30","30","30","31","31","30","31","30","31"];
+    month--;
+    return validEndDate = validMonthDays[month];
 
 }
 
