@@ -1,14 +1,14 @@
 
-// function validMonth(month){
-//     // confirm month is not greater than 12 and less than 1
-//     valid = true;
-//     intMonth = parseInt(month);
+function validMonth(month){
+    // confirm month is not greater than 12 and less than 1
+    valid = true;
+    intMonth = parseInt(month);
 
-//     if(intMonth <=0 || intMonth > 12){
-//         return valid = false;
-//     }
+    if(intMonth <=0 || intMonth > 12){
+        return valid = false;
+    }
 
-// }
+}
 
 function validation() {
 	var dayText = document.getElementById("day").value;
