@@ -1,21 +1,6 @@
+var validMonths = ["January", "February", "March","April","May","June","July","August","September","October","November","December"];
+var monthCodeArray = ["0","3","3","6","1","4","6","2","5","0","3","5"];
 
-function validMonth(month){
-    // confirm month is not greater than 12 and less than 1
-    valid = true;
-    enteredMonth = parseInt(month);
-
-    if(enteredMonth <=0 || enteredMonth > 12){
-        return valid = false;
-    }
-
-}
-function validDay(month){
-    // Determine the valid days for the month and retun the value
-    var validMonthDays = ["31","28","31","30","30","30","31","31","30","31","30","31"];
-    month--;
-    return validEndDate = validMonthDays[month];
-
-}
 function checkLeapYear(year) {
     valid = false;
     // is number evenly divisible by 4
@@ -39,6 +24,23 @@ function checkLeapYear(year) {
         return valid = true;
     } 
 }
+    
+function compareDate(birthDate){
+    // determine if the date is not in the future
+    var time1 = new Date(birthDate); 
+    var today = new Date();
+    var diff = today - time1;
+
+    if (diff > 0){
+       return valid = false;
+    }else if (diff < 0){
+        return valid = true;
+    }else{
+        return valid = false;
+    }
+
+}
+
 function checkValidDays(month,day,year) {
     var validDays = ["31","28","31","30","30","30","31","31","30","31","30","31"];
 
@@ -71,6 +73,25 @@ function checkValidDays(month,day,year) {
         }
     }
   
+}
+
+function getValidDay(month){
+    // Determine the valid days for the month and retun the value
+    var validMonthDays = ["31","28","31","30","30","30","31","31","30","31","30","31"];
+    month--;
+    return validEndDate = validMonthDays[month];
+
+}
+
+function checkValidMonth(month){
+    // check if the month input value is greater than 12
+    valid = true;
+    intMonth = parseInt(month);
+
+    if(intMonth <=0 || intMonth > 12){
+        return valid = false;
+    }
+
 }
 
 function checkFloat(number) {
@@ -213,18 +234,93 @@ function getName() {
 
 }
 
-
 function validation() {
-	var dayText = document.getElementById("day").value;
-	var monthText = document.getElementById("month").value;
-	var yearText = document.getElementById("year").value;
+	var dayTxt = document.getElementById("day").value;
+	var monthTxt = document.getElementById("month").value;
+	var yearTxt = document.getElementById("year").value;
 	var male = document.getElementById("male");
 	var female = document.getElementById("female");
 	var errorMessage = document.getElementById("error-message");
 
-    // convert strings to integers
-    day = parseInt(dayText);
-    month = parseInt(monthText);
-    year = parseInt(yearText);
+	// convert to integer data types
+    day = parseInt(dayTxt);
+    month = parseInt(monthTxt);
+    year = parseInt(yearTxt);
+    
+    //build birthday DD-MM-YYYY
+    var birthDayString = dayTxt + "-" + monthTxt + "-" + yearTxt;
+	var text = " ";
+	var isFloatDay = checkFloat(day);
+    var isFloatMonth = checkFloat(month);
+	var isFloatYear = checkFloat(year);
+    var isValidMonth = checkValidMonth(month);
+    var isValidDay = checkValidDays(monthTxt,dayTxt,yearTxt);
+    var isFutureDate = compareDate(birthDayString);
+    var endMonthDate = getValidDay(month);
+
+	if(dayTxt.length < 1 || isNaN(day) || isFloatDay == true ) {
+        text="Please Enter Day";
+	    errorMessage.style.padding = "10px"; 
+        errorMessage.innerHTML = text;
+        dayTxt.innerHTML = "";
+        return false;
+    }
+
+    if(isValidDay == false) {
+
+        if(month == 2 && day == 29){
+            text="Day is between 1 - 28";
+            errorMessage.style.padding = "10px"; 
+            errorMessage.innerHTML = text;
+            return false;
+        } else {
+            text="Day is between 1 - " + endMonthDate;
+            errorMessage.style.padding = "10px"; 
+            errorMessage.innerHTML = text;
+            return false;
+        }
+
+    }
+	if(monthTxt.length < 1 || isNaN(month) || isFloatMonth == true) {
+        text="Please Enter Month";
+	    errorMessage.style.padding = "10px"; 
+        errorMessage.innerHTML = text;
+        return false;
+    } 
+
+    if(isValidMonth == false){
+        text="Month is between 1 - 12";
+	    errorMessage.style.padding = "10px"; 
+        errorMessage.innerHTML = text;
+        return false;
+    }
+
+	if(yearTxt.length < 4 || year <= 0 || isNaN(year) || isFloatYear == true) {
+        text="Please Enter Year";
+	    errorMessage.style.padding = "10px"; 
+        errorMessage.innerHTML = text;
+        return false;
+    }
+
+    // check if the date is in the future
+    if(isFutureDate === true){
+        text="Birthday must be in the past";
+	    errorMessage.style.padding = "10px"; 
+        errorMessage.innerHTML = text;
+        return false;
+    }
+
+    // check if gender is selected
+	if(male.checked == false && female.checked == false) {
+        text="Please Select Gender";
+        errorMessage.style.padding = "10px"; 
+        errorMessage.innerHTML = text;
+        return false;
+	}
+
+    // calculate the name
+	getName();
+	errorMessage.style.padding = "0px";
+	errorMessage.innerHTML = "";
 
 }
