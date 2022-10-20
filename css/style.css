@@ -16,3 +16,6 @@ margin-right: 250px;
     margin-left: 20px;
     margin-right: 20px;
 }
+#error-message {
+    background: red;
+}
