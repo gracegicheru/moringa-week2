@@ -6,6 +6,7 @@ margin-right: 250px;
 .submit {
     margin-top: 20px;
     float: right;
+    color: green;
     background-color: green;
 }
 .radio {
