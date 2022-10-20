@@ -73,6 +73,146 @@ function checkValidDays(month,day,year) {
   
 }
 
+function checkFloat(number) {
+    // check if the user input is a float data type
+    // return true if input is of float data type
+
+    var floatingPoint = false;
+    if (!isNaN(number) && number.toString().indexOf('.') != -1) {
+        //console.log("this is a numeric value and I\"m sure it is a float.");
+        floatingPoint = true;
+        return floatingPoint;
+    }
+
+} 
+
+function getName() {
+    // The formula used to find the date is  
+    // dayBorn = (yearCode + monthCode + centuryCode + date - leapYearCode) % 7
+	var maleName = ["Kwasi","Kwadwo","Kwabena","Kwaku","Yaw","Kofi","Kwame"];
+	var femaleName = ["Akosua","Adwoa","Abenaa","Akua","Yaa","Afua","Ama"];
+	var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var monthCodeArray = ["0","3","3","6","1","4","6","2","5","0","3","5"];
+	var day = document.getElementById("day").value;
+	var month = document.getElementById("month").value;
+	var year = document.getElementById("year").value;
+	var male = document.getElementById("male");
+	var female = document.getElementById("female");
+	var textCC = year.slice(0,2);
+	var textYY = year.slice(2,4);  
+	var textMM = month;
+    var textDD = day;
+    
+    // make sure the variables are integers
+	var CC = parseInt(textCC);
+	var YY = parseInt(textYY);
+	var MM = parseInt(textMM);
+	var DD = parseInt(textDD);
+	var yearCode = 0;
+	var monthCode = 0;
+	var centuryCode = 0;
+	var leapYearCode = 0;
+
+    // determine if it was a leap year
+	var isLeapYear = checkLeapYear(year);
+
+    // determine the year code
+    // if the year is 00, e.g. 1900 set year code to zerp
+    // else calculate the year code.
+	if(YY == 0){
+	    yearCode = 0;
+	} else {
+	    yearCode = (YY + (YY/4))%7;
+	}
+
+    // adjust month to align with array index
+    // and get the month code from the array
+	MM--;
+	monthCode = parseInt(monthCodeArray[MM]);
+   
+    // get the century code
+    // 17C and 21C have code 4
+    // 18C and 22C have code 2
+    // 19C and 23C have code 0, 20C has code 6 
+
+	if(CC == 17 || CC == 21){
+  	    centuryCode = 4;
+	}
+
+	if(CC == 18 || CC == 22){
+  	    centuryCode = 2;
+    }
+    
+	if(CC == 19 || CC == 23){
+  	    centuryCode = 0;
+    }
+    
+	if(CC == 20){
+	    centuryCode = 6;
+	}
+
+	// determine if it is a leapyear
+    // a leap year is assigned a 1, for January and February
+    // we need to adjust the days by subtracting 1 from the formula
+
+	if((isLeapYear == true) && (monthCode == 0 || monthCode == 1)){
+  	    leapYearCode = 1;
+    }
+    
+    // subtract the leap year code first before determining the final day
+    var subTotal = Math.floor(yearCode) + monthCode + parseInt(centuryCode) + DD - parseInt(leapYearCode);
+    
+    // determine the actual day which will return an integer between 0 and 6
+    var dayInt = parseInt(subTotal%7);
+
+    // determine the name of the day from the array
+    var dayBorn = weekdays[dayInt];
+
+    // determine the name based on the gender selected by user
+    if(male.checked == true){
+                
+        var akanName = maleName[dayInt];
+        let akanSection = document.querySelector('#akan');
+        let buttonObject = document.querySelector('.btn');
+        akanTitle = document.getElementsByTagName('h2');
+        paraText = akanSection.getElementsByTagName('p');
+        
+        // write to the HTML document
+		if(isLeapYear == true){
+            paraText[0].innerHTML = "You were born on a " + dayBorn + ", <br> your Akan name is " + akanName + "<br> It was a leap year!";
+            akanTitle[1].innerHTML = akanName;
+            buttonObject.innerHTML = "<input type=\"button\" value=\"Reset\" onclick=\"location.reload();\">";
+            
+		} else {
+            paraText[0].innerHTML = "You were born on a " + dayBorn + ", <br> your Akan name is " + akanName;
+            akanTitle[1].innerHTML = akanName;
+            buttonObject.innerHTML = "<input type=\"button\" value=\"Reset\" onclick=\"location.reload();\">";
+            
+		}
+	}
+
+	if(female.checked == true){
+        var akanName = femaleName[dayInt];
+        let akanSection = document.querySelector('#akan');
+        let buttonObject = document.querySelector('.btn');
+        akanTitle = document.getElementsByTagName('h2');
+        paraText = akanSection.getElementsByTagName('p');
+        
+        // write to the HTML document
+
+		if(isLeapYear == true){
+            akanTitle[1].innerHTML = akanName;
+            paraText[0].innerHTML = "You were born on a " + dayBorn + ", <br> your Akan name is " + akanName + "<br> It was a leap year!";
+            buttonObject.innerHTML = "<input type=\"button\" value=\"Reset\" onclick=\"location.reload();\">";
+		} else {
+            akanTitle[1].innerHTML = akanName;
+            paraText[0].innerHTML = "You were born on a " + dayBorn + ", <br> your Akan name is " + akanName;
+            buttonObject.innerHTML = "<input type=\"button\" value=\"Reset\" onclick=\"location.reload();\">";
+		}
+	}	
+
+}
+
 
 function validation() {
 	var dayText = document.getElementById("day").value;
