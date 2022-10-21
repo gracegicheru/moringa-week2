@@ -15,10 +15,11 @@
 
 * Any OS either be (windows, Linux, MacOS),  Git to clone the project, and IDE to edit the project.
 * follow these steps:
-  mkdir calculator
-  cd calculator
-  git clone https://github.com/gracegicheru/moringa-week2.git
-  cd moringa-week2
+  * mkdir calculator
+  * cd calculator
+  * git clone https://github.com/gracegicheru/moringa-week2.git
+  * cd moringa-week2
+  * open index.html on your browser
 
 ### Technologies used
 
