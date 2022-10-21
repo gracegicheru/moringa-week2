@@ -19,3 +19,7 @@ margin-right: 250px;
 #error-message {
     background: red;
 }
+.answer {
+    margin-left: 250px; 
+    color: red;
+}
