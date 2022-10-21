@@ -1,10 +1,10 @@
 # Project Title
 
-* Simple Calculator.
+* Akan Calculator.
 
 ## Author Name
 
-* Grace Gicheru, an Engineer in safaricom
+* Grace Gicheru.
 
 ## Description
 * This is a simpe web application that takes user's birthday and calculates the day they were born and        depending on the gender it outputs their Akan name.
@@ -14,14 +14,15 @@
 ### Project Setup Instructions
 
 * Any OS either be (windows, Linux, MacOS),  Git to clone the project, and IDE to edit the project.
+* follow these steps:
+  mkdir calculator
+  cd calculator
+  git clone https://github.com/gracegicheru/moringa-week2.git
+  cd moringa-week2
 
 ### Technologies used
 
 * Html, css and JavaScript
-
-### BDD
-
-*
 
 ### Link to the project
 
